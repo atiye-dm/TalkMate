@@ -37,7 +37,7 @@ public sealed class ChatService : IChatService
             throw new InvalidOperationException($"User with id '{request.UserId}' was not found.");
         }
 
-        var createdAt = DateTime.UtcNow;
+        var createdAt = DateTime.Now;
         var message = new Message
         {
             Id = Guid.NewGuid(),
@@ -54,7 +54,7 @@ public sealed class ChatService : IChatService
             Id = Guid.NewGuid(),
             MessageId = message.Id,
             ResponseText = responseText,
-            CreatedAt = DateTime.UtcNow
+            CreatedAt = DateTime.Now
         };
 
         await _chatRepository.AddResponseAsync(response, cancellationToken);
